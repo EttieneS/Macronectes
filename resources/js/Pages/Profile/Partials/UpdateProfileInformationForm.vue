@@ -15,10 +15,9 @@ const props = defineProps({
 });
 
 const form = useForm({
-    _method: 'PUT',
-    name: props.user.name,
-    email: props.user.email,
-    photo: null,
+    _method: 'POST',
+    name: '',
+    email: '',
 });
 
 const verificationLinkSent = ref(null);

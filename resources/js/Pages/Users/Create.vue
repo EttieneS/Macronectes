@@ -10,51 +10,72 @@
     import SecondaryButton from '@/Components/SecondaryButton.vue';
     import TextInput from '@/Components/TextInput.vue';
     import AppLayout from '@/Layouts/AppLayout.vue';
-
-    createUser()
-    {
-        form.post(route('user-profile-information.update'), {
-        errorBag: 'updateProfileInformation',
-        preserveScroll: true,
-        onSuccess: () => clearPhotoFileInput(),
+                
+    const form = useForm({
+        _method: 'POST',
+        name: '',
+        email: ''
     });
+
+    const createUser = () =>
+    {
+        Inertia.post('/users/create', form)        
     }
 
 </script>
-<template>
-    <AppLayout title="Create">
+<template>        
+    <AppLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Create User
             </h2>
         </template>
-
-        <div>
+        <div>            
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <template>
-                    <FormSection @submitted="createUser">
-                        <template #title>
-                            User Information.
-                        </template>
+                <FormSection @submitted="createUser">
+                    <template #header>
+                        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                            Register
+                        </h2>
+                    </template>
+                    <template #title>
+                        User Information
+                    </template>
 
-                        <template #description>
-                            Enter User Information.
-                        </template>
+                    <template #description>
+                        Enter the user's details.
+                    </template>
 
-                        <template #form>
-                            <div class="col-span-6 sm:col-span-4">
-                                <InputLabel for="name" value="Name" />
-                                    <TextInput
-                                        id="name"
-                                        v-model="form.name"
-                                        type="text"
-                                        class="mt-1 block w-full"
-                                        autocomplete="name"
-                                    />                                
-                            </div>
-                        </template>
-                    </FormSection>
-                </template>
+                    <template #form>
+                        <div class="col-span-6 sm:col-span-4">
+                            <InputLabel for="name" value="Name" />
+                            <TextInput
+                                id="name"
+                                v-model="form.name"
+                                type="text"
+                                class="mt-1 block w-full"
+                                autocomplete="name"
+                            />
+                            <InputError :message="form.errors.name" class="mt-2" />
+                        </div>
+                        <div class="col-span-6 sm:col-span-4">
+                            <InputLabel for="email" value="Email" />
+                            <TextInput
+                                id="email"
+                                v-model="form.email"
+                                type="text"
+                                class="mt-1 block w-full"
+                                autocomplete="email"
+                            />
+                            <InputError :message="form.errors.name" class="mt-2" />
+                        </div>
+                        <div class="col-span-6 sm:col-span-4">
+                            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="createUser">
+                                Save
+                            </PrimaryButton>
+                        </div>
+                    </template>                    
+                </FormSection>
             </div>
         </div>
     </AppLayout>
