@@ -4,6 +4,8 @@
 /public/storage
 /storage/*.key
 /vendor
+./resources/videos
+./resources/metadata
 .env
 .env.backup
 .env.production

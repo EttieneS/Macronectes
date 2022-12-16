@@ -1,8 +1,8 @@
 <?php
-use App\Http\Controllers\UserController;
-
-    Route::get('index', [\App\Http\Controllers\VideoController::class, 'index'])->name('index');
-    // Route::get('getall', [\App\Http\Controllers\UserController::class, 'getall'])->name('getall');
-    Route::get('createview', [\App\Http\Controllers\UserController::class, 'createview'])->name('createview');
-    Route::post('create', [\App\Http\Controllers\UserController::class, 'create'])->name('create');
+    use App\Http\Controllers\VideoController;
+    
+    Route::get('', [\App\Http\Controllers\VideoController::class, 'index'])->name('index');
+    Route::get('watch/{name}', [\App\Http\Controllers\VideoController::class, 'watch'])->name('watch');    
+    Route::get('uploadview', [\App\Http\Controllers\VideoController::class, 'uploadview'])->name('uploadview');
+    Route::post('upload', [\App\Http\Controllers\VideoController::class, 'upload'])->name('upload');
 ?> 

@@ -5,4 +5,11 @@
 body {
     background: navy; 
     color: red;
+    max-width: 600px;
+    margin: auto;
+    font-family: sans-serif;
+}
+
+p {
+    line-height: 1.5;
 }
