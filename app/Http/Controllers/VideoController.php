@@ -1,6 +1,9 @@
 <?php
     namespace App\Http\Controllers;
-            
+    
+    use Illuminate\Support\Facades\Storage;
+    use Illuminate\Http\Request;
+
     class VideoController extends Controller
     {        
         public function index()
@@ -21,25 +24,15 @@
             return view('videos/upload');
         }
         
-        public function upload()
+        public function upload(Request $request)
         {                      
-            $vidname = "bonobo";//$_POST['videoname'];
-            $uploaddir = 'C:/uploads/';
+            $file = $request->file('video');
+            $filename = $file->getClientOriginalName();
+            $folder = "Videos";
+            
 
-            $uploadfile = $uploaddir . basename($_FILES['video']['name']);
-            // dd($uploadfile);
-            echo '<pre>';
-            if (move_uploaded_file($_FILES['video']['tmp_name'], $uploadfile)) {
-                //echo "File is valid, and was successfully uploaded.\n";
-                header('Location: http://mimusvideo.test/uploadview');
-            } else {
-                echo "Possible file upload attack!\n";
-            }
-            
-            echo 'Here is some more debugging info:';
-            print_r($_FILES);
-            
-            print "</pre>";
+            Storage::disk('unicinctus')->putFileAs($folder, $file, $filename);
+            return view('videos/upload');            
         }
     }
 ?>

@@ -6,8 +6,7 @@
 
 <body>
     <div>
-        <form action="../upload" method="post" enctype="multipart/form-data">        
-            @csrf
+        <form action="../upload" method="post" enctype="multipart/form-data">            
             <div>
                 <label>Upload your mp4 :)</label>
                 <input type="file" id="video" name="video">

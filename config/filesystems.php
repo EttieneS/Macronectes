@@ -44,6 +44,15 @@ return [
             'throw' => false,
         ],
 
+        'unicinctus' => [            
+            'driver' => 'ftp',
+            'host' => env('UNICINCTUS_HOST'),
+            'username' => env('UNICINCTUS_USERNAME'),
+            'password' => env('UNICINCTUS_PASSWORD'),
+            'root' => '/',
+            'port' => 21
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
