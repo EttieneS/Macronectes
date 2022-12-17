@@ -1,10 +1,8 @@
-<!doctype html>
+@extends('layouts.app')
 
-<title>Watch Video</title>
-<link rel="stylesheet" href="../../app.css">
-<script src="../../app.js"></script>
+<title>Upload Video</title>
 
-<body>
+@section('content')
     <div>
         <form action="../upload" method="post" enctype="multipart/form-data">            
             <div>
@@ -17,4 +15,4 @@
             </div>
         </form>
     </div>
-</body>
+@stop
