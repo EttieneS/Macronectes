@@ -1,10 +1,10 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 body {
-    background: navy; 
-    color: red;
+    background: gray; 
+    color: black;
     max-width: 600px;
     margin: auto;
     font-family: sans-serif;
