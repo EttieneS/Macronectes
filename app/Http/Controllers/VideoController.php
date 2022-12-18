@@ -13,8 +13,11 @@
             return view('videos/index', compact('videos')); 
         }
 
-        public function watch($link)
-        {               
+        public function watch($filename)
+        {   
+            $filename = "Maandag.mp4";
+            $this->uploadweb($filename);
+
             $link = "http://127.0.0.1:8887/OpenUpYourHeart.mp4";            
             return view('videos/watch', array('link' => $link));
         }
@@ -45,6 +48,25 @@
                 'created_at' => date('d-m-Y H:i:s'), 
                 'user_id' => $userid,
             ]);
+        }
+
+        public function uploadweb($filename)
+        {   
+            //get file location from db            
+            $filelocation = "test/Maandag.mp4";
+
+            //dl file from ftp
+            $ftpfile = Storage::disk('unicinctus')->get($filelocation);
+            // $filename = $ftpfile->getClientOriginalName();
+            // dd($filename);
+            $result = Storage::disk('videos')->put('test.mp4', $ftpfile);
+            dd($result);
+
+            //save to videos
+            // $downloadlocation = 
+
+            //upload to webserver
+
         }
     }
 ?>

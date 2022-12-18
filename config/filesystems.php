@@ -44,7 +44,24 @@ return [
             'throw' => false,
         ],
 
+        'videos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL').'/videos',
+            'visibility' => 'private',
+            'throw' => false,
+        ],
+
         'unicinctus' => [            
+            'driver' => 'ftp',
+            'host' => env('UNICINCTUS_HOST'),
+            'username' => env('UNICINCTUS_USERNAME'),
+            'password' => env('UNICINCTUS_PASSWORD'),
+            'root' => '/',
+            'port' => 21
+        ],
+
+        'webserver' => [
             'driver' => 'ftp',
             'host' => env('UNICINCTUS_HOST'),
             'username' => env('UNICINCTUS_USERNAME'),
