@@ -7,15 +7,15 @@
     <table>
         <thead>
             <tr>
-                <th>filename</th>
-                <th>watch</th>
+                <th>Title</th>
+                <th>Action</th>
             </tr>
         </thead> 
         <tbody>
             @foreach($videos as $video)
             <tr> 
                 <td>{{ $video->filename }}</td>
-                <td><a href='watch/{{$video->filename}}'>{{ $video->filename }}</a></td>
+                <td><a href='watch/{{$video->id}}'>Watch Video</a></td>
             </tr>
             @endforeach
         </tbody>

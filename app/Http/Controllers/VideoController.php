@@ -14,11 +14,9 @@
         }
 
         public function watch($filename)
-        {   
-            $filename = "Maandag.mp4";
-            $this->uploadweb($filename);
-
-            $link = "http://127.0.0.1:8887/OpenUpYourHeart.mp4";            
+        {               
+            $link = $this->uploadweb($filename);
+                                         
             return view('videos/watch', array('link' => $link));
         }
         
@@ -50,23 +48,30 @@
             ]);
         }
 
-        public function uploadweb($filename)
-        {   
-            //get file location from db            
-            $filelocation = "test/Maandag.mp4";
+        public function uploadweb($id)
+        {               
+            $video = Video::where('id', '=', $id)->first();
+            
+            $userid = $video->user_id;
+            $filename = $video->filename;
+            $folder = $video->created_at->format('d-m-Y');
+            $root = "Videos/";
 
-            //dl file from ftp
-            $ftpfile = Storage::disk('unicinctus')->get($filelocation);
-            // $filename = $ftpfile->getClientOriginalName();
-            // dd($filename);
-            $result = Storage::disk('videos')->put('test.mp4', $ftpfile);
-            dd($result);
+            $ftplocation = $root . $folder . "/" . $filename;
+            
+            $ftpfile = Storage::disk('unicinctus')->get($ftplocation);
+            
 
-            //save to videos
-            // $downloadlocation = 
+            $server = "http://127.0.0.1:8887/";
+            $obfuscatedname = "obfuscated";
+            $extension = ".mp4";
+            $webservername = $obfuscatedname . $extension;            
+            
+            $result = Storage::disk('videos')->put($webservername, $ftpfile);
 
-            //upload to webserver
-
+            $webserverlocation = $server . $obfuscatedname . $extension;
+             
+            return $webserverlocation;
         }
     }
 ?>
